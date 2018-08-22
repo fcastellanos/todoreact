@@ -8,7 +8,7 @@ class Avatar extends Component {
         <Row>
           <Col xs={10}></Col>
           <Col xs={2}>
-            <Image src="https://avatars1.githubusercontent.com/u/194945?s=460&v=4" thumbnail circle />
+            <Image src="https://avatars2.githubusercontent.com/u/123592?s=200&v=4" thumbnail circle />
           </Col>
         </Row>
       </div>

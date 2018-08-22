@@ -45,6 +45,12 @@ class App extends Component {
     }
   }
 
+  addTask() {
+    var task = {'time': '5', 'period': 'AM', 'activity_title': 'Jogging', 'activity_description': 'Go for a run!'};
+    var tasks = this.state.tasks.concat(task);
+    this.setState({tasks: tasks});
+  }
+
   render() {
     return (
       <div style={{padding: '30px 30px'}}>
@@ -54,7 +60,7 @@ class App extends Component {
         <br />
         <TaskList tasks={this.state.tasks} />
         <br />
-        <AddButton />
+        <AddButton onClick={this.addTask.bind(this)} />
       </div>
     );
   }
