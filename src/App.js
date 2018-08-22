@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import TaskList from './TaskList.js';
 import Date from './Date.js';
@@ -6,46 +7,40 @@ import AddButton from './AddButton.js';
 
 import './App.css';
 
+require('dotenv').config();
+
+var tasks = [];
+
+const axios = require('axios');
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      tasks: [
-        {
-          'time': '12',
-          'period': 'AM',
-          'activity_title': 'Finish Tutorial Series',
-          'activity_description': '#ReactForNewbies'
-        },
-        {
-          'time': '9',
-          'period': 'AM',
-          'activity_title': 'Meeting with Team Leads',
-          'activity_description': 'New Project Kickoff'
-        },
-        {
-          'time': '11',
-          'period': 'AM',
-          'activity_title': 'Call Mom',
-          'activity_description': 'Return her call before she kills me'
-        },
-        {
-          'time': '3',
-          'period': 'PM',
-          'activity_title': 'Fix Wifey\'s website',
-          'activity_description': 'FB Ads Integration not working'
-        },
-        {
-          'time': '6',
-          'period': 'PM',
-          'activity_title': 'Do DB Backups',
-          'activity_description': 'Related to upcoming server migration'
-        }
-      ]
+      tasks: tasks
     }
   }
 
+  init() {
+    // Refference https://github.com/99xt/serverless-react-boilerplate/blob/aws-react/web/src/App.js#L26
+  }
+
   addTask() {
+    console.log(process.env);
+
+    axios.get( process.env.REACT_APP_BACKEND_URL + '/todos')
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+
     var task = {'time': '5', 'period': 'AM', 'activity_title': 'Jogging', 'activity_description': 'Go for a run!'};
     var tasks = this.state.tasks.concat(task);
     this.setState({tasks: tasks});
