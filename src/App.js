@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
+
 import TaskList from './TaskList.js';
 import Date from './Date.js';
 import Avatar from './Avatar.js';
 import AddButton from './AddButton.js';
-
 import './App.css';
 
 require('dotenv').config();
@@ -14,24 +14,25 @@ var tasks = [];
 const axios = require('axios');
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       tasks: tasks
-    }
+    };
+
+    this.init = this.init.bind(this);
   }
+
+  componentDidMount() {
+      this.init();
+    }
 
   init() {
-    // Refference https://github.com/99xt/serverless-react-boilerplate/blob/aws-react/web/src/App.js#L26
-  }
-
-  addTask() {
-    console.log(process.env);
+    var self = this;
 
     axios.get( process.env.REACT_APP_BACKEND_URL + '/todos')
       .then(function (response) {
-        // handle success
-        console.log(response);
+        self.setState({tasks: response.data});
       })
       .catch(function (error) {
         // handle error
@@ -40,10 +41,10 @@ class App extends Component {
       .then(function () {
         // always executed
       });
+  }
 
-    var task = {'time': '5', 'period': 'AM', 'activity_title': 'Jogging', 'activity_description': 'Go for a run!'};
-    var tasks = this.state.tasks.concat(task);
-    this.setState({tasks: tasks});
+  addTask() {
+    console.log('Add task!');
   }
 
   render() {
