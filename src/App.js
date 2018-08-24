@@ -70,7 +70,7 @@ class App extends Component {
         <TaskList tasks={this.state.tasks} />
         <br />
         <AddButton onClick={this.openModal} />
-        <CreateTaskModal isOpen={this.state.modalIsOpen} requestClose={this.closeModal} />
+        <CreateTaskModal show={this.state.modalIsOpen} onHide={this.closeModal} />
       </div>
     );
   }
