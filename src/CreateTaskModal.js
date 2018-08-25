@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
+import {Modal, Button, FormControl, FormGroup, ControlLabel} from 'react-bootstrap';
 
 require("react-bootstrap/lib/ModalHeader");
 require("react-bootstrap/lib/ModalTitle");
@@ -13,7 +13,9 @@ class CreateTaskModal extends Component {
     this.state = {
       fields: {},
       errors: {}
-    }
+    };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleRequestClose() {
@@ -26,23 +28,14 @@ class CreateTaskModal extends Component {
     console.log(this.state);
   }
 
-  handleChange(field, e) {
+  handleChange(event) {
     let fields = this.state.fields;
-    fields[field] = e.target.value;
-    this.setState({fields});
+    fields[event.target.id] = event.target.value;
+    console.log(fields);
+    // this.setState({fields});
   }
 
   render() {
-    function FieldGroup({ id, label, help, ...props }) {
-      return (
-        <FormGroup controlId={id}>
-          <ControlLabel>{label}</ControlLabel>
-          <FormControl {...props} />
-          {help && <HelpBlock>{help}</HelpBlock>}
-        </FormGroup>
-      );
-    }
-
     return (
       <Modal show={this.props.show} onHide={this.handleRequestClose.bind(this)}>
         <Modal.Header closeButton>
@@ -50,22 +43,26 @@ class CreateTaskModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={this.onSubmit}>
-            <FieldGroup
-              id="formTaskTitle"
-              type="text"
-              label="Title"
-              placeholder="Enter Title"
-              onChange={this.handleChange.bind(this, "title")}
-              value={this.state.fields["title"]}
-            />
-            <FieldGroup
-              id="formTaskDescription"
-              componentClass="textarea"
-              label="Description"
-              placeholder="Enter Description"
-              onChange={this.handleChange.bind(this, "description")}
-              value={this.state.fields["description"]}
-            />
+            <FormGroup>
+              <ControlLabel>Title</ControlLabel>
+              <FormControl
+                id="taskTitle"
+                type="text"
+                placeholder="Enter Title"
+                onChange={this.handleChange}
+                value={this.state.fields["taskTitle"]}
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>Description</ControlLabel>
+              <FormControl
+                id="taskDescription"
+                componentClass="textarea"
+                placeholder="Enter Description"
+                onChange={this.handleChange}
+                value={this.state.fields["taskDescription"]}
+              />
+            </FormGroup>
             <Button bsStyle="success" type="submit">Submit</Button>
           </form>
         </Modal.Body>
