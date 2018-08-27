@@ -35,7 +35,7 @@ class App extends Component {
   init() {
     var self = this;
 
-    axios.get( process.env.REACT_APP_BACKEND_URL + '/todos')
+    axios.get(process.env.REACT_APP_BACKEND_URL + '/todos')
       .then(function (response) {
         self.setState({tasks: response.data});
       })

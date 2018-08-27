@@ -6,6 +6,8 @@ require("react-bootstrap/lib/ModalTitle");
 require("react-bootstrap/lib/ModalBody");
 require("react-bootstrap/lib/ModalFooter");
 
+const axios = require('axios');
+
 class CreateTaskModal extends Component {
   constructor(props) {
     super(props);
@@ -15,29 +17,48 @@ class CreateTaskModal extends Component {
       errors: {}
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange       = this.handleChange.bind(this);
+    this.onSubmit           = this.onSubmit.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   handleRequestClose() {
     this.props.onHide();
   }
 
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
 
-    console.log(this.state);
+    console.log(this.state.fields);
+
+    // NOTE: Instead of constructing the post body we can just set this.state.fields
+    // if the field ids match the request fields
+    // TODO: Change taskTitle => activity_title
+    //       Change taskDescription => activity_description
+
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', {
+      "activity_title": this.state.fields['taskTitle'],
+      "activity_description": this.state.fields['taskDescription'],
+      "time": "3",
+      "period": "PM"
+    })
+      .then(function(response){
+        this.handleRequestClose();
+      })
+      .catch(function(error){
+        console.log(error);
+      });
   }
 
   handleChange(event) {
     let fields = this.state.fields;
     fields[event.target.id] = event.target.value;
-    console.log(fields);
     // this.setState({fields});
   }
 
   render() {
     return (
-      <Modal show={this.props.show} onHide={this.handleRequestClose.bind(this)}>
+        <Modal show={this.props.show} onHide={this.handleRequestClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add a new Task</Modal.Title>
         </Modal.Header>
@@ -67,7 +88,7 @@ class CreateTaskModal extends Component {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="danger" onClick={this.handleRequestClose.bind(this)}>Close</Button>
+          <Button bsStyle="danger" onClick={this.handleRequestClose}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
