@@ -13,7 +13,10 @@ class CreateTaskModal extends Component {
     super(props);
 
     this.state = {
-      fields: {},
+      fields: {
+        taskTitle: "",
+        taskDescription: ""
+      },
       errors: {}
     };
 
@@ -36,6 +39,8 @@ class CreateTaskModal extends Component {
     // TODO: Change taskTitle => activity_title
     //       Change taskDescription => activity_description
 
+    var self = this;
+
     axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', {
       "activity_title": this.state.fields['taskTitle'],
       "activity_description": this.state.fields['taskDescription'],
@@ -43,7 +48,7 @@ class CreateTaskModal extends Component {
       "period": "PM"
     })
       .then(function(response){
-        this.handleRequestClose();
+        self.handleRequestClose();
       })
       .catch(function(error){
         console.log(error);
@@ -53,7 +58,7 @@ class CreateTaskModal extends Component {
   handleChange(event) {
     let fields = this.state.fields;
     fields[event.target.id] = event.target.value;
-    // this.setState({fields});
+    this.setState({fields});
   }
 
   render() {
