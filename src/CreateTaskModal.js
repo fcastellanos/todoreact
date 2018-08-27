@@ -35,13 +35,6 @@ class CreateTaskModal extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    console.log(this.state.fields);
-
-    // NOTE: Instead of constructing the post body we can just set this.state.fields
-    // if the field ids match the request fields
-    // TODO: Change taskTitle => activity_title
-    //       Change taskDescription => activity_description
-
     var self = this;
 
     axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', this.state.fields)
@@ -59,6 +52,7 @@ class CreateTaskModal extends Component {
     this.setState({fields});
   }
 
+  // TODO: Find a way to make the period input work with the handleChange function
   handlePeriodChange(event) {
     let fields = this.state.fields;
     fields["period"] = event.target.value;
