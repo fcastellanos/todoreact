@@ -14,8 +14,8 @@ class CreateTaskModal extends Component {
 
     this.state = {
       fields: {
-        taskTitle: "",
-        taskDescription: "",
+        activity_title: "",
+        activity_description: "",
         time: "",
         period: "AM"
       },
@@ -44,12 +44,7 @@ class CreateTaskModal extends Component {
 
     var self = this;
 
-    axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', {
-      "activity_title": this.state.fields['taskTitle'],
-      "activity_description": this.state.fields['taskDescription'],
-      "time": "3",
-      "period": "PM"
-    })
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', this.state.fields)
       .then(function(response){
         self.handleRequestClose();
       })
@@ -81,21 +76,21 @@ class CreateTaskModal extends Component {
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <FormControl
-                id="taskTitle"
+                id="activity_title"
                 type="text"
                 placeholder="Enter Title"
                 onChange={this.handleChange}
-                value={this.state.fields["taskTitle"]}
+                value={this.state.fields["activity_title"]}
               />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
               <FormControl
-                id="taskDescription"
+                id="activity_description"
                 componentClass="textarea"
                 placeholder="Enter Description"
                 onChange={this.handleChange}
-                value={this.state.fields["taskDescription"]}
+                value={this.state.fields["activity_description"]}
               />
             </FormGroup>
             <FormGroup>
