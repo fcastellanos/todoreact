@@ -22,9 +22,9 @@ class CreateTaskModal extends Component {
       errors: {}
     };
 
-    this.handleChange       = this.handleChange.bind(this);
     this.onSubmit           = this.onSubmit.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleChange       = this.handleChange.bind(this);
     this.handlePeriodChange = this.handlePeriodChange.bind(this);
   }
 
