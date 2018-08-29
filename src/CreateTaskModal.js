@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Modal, Button, FormControl, FormGroup, ControlLabel, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 
-require("react-bootstrap/lib/ModalHeader");
-require("react-bootstrap/lib/ModalTitle");
-require("react-bootstrap/lib/ModalBody");
-require("react-bootstrap/lib/ModalFooter");
+require('react-bootstrap/lib/ModalHeader');
+require('react-bootstrap/lib/ModalTitle');
+require('react-bootstrap/lib/ModalBody');
+require('react-bootstrap/lib/ModalFooter');
 
 const axios = require('axios');
 
@@ -14,10 +14,10 @@ class CreateTaskModal extends Component {
 
     this.state = {
       fields: {
-        activity_title: "",
-        activity_description: "",
-        time: "",
-        period: "AM"
+        activity_title: '',
+        activity_description: '',
+        time: '',
+        period: 'AM'
       },
       errors: {}
     };
@@ -55,7 +55,7 @@ class CreateTaskModal extends Component {
   // TODO: Find a way to make the period input work with the handleChange function
   handlePeriodChange(event) {
     let fields = this.state.fields;
-    fields["period"] = event.target.value;
+    fields['period'] = event.target.value;
     this.setState({fields});
   }
 
@@ -70,47 +70,47 @@ class CreateTaskModal extends Component {
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <FormControl
-                id="activity_title"
-                type="text"
-                placeholder="Enter Title"
+                id='activity_title'
+                type='text'
+                placeholder='Enter Title'
                 onChange={this.handleChange}
-                value={this.state.fields["activity_title"]}
+                value={this.state.fields['activity_title']}
               />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
               <FormControl
-                id="activity_description"
-                componentClass="textarea"
-                placeholder="Enter Description"
+                id='activity_description'
+                componentClass='textarea'
+                placeholder='Enter Description'
                 onChange={this.handleChange}
-                value={this.state.fields["activity_description"]}
+                value={this.state.fields['activity_description']}
               />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Time</ControlLabel>
               <FormControl
-                id="time"
-                type="text"
-                placeholder="Enter Time"
+                id='time'
+                type='text'
+                placeholder='Enter Time'
                 onChange={this.handleChange}
-                value={this.state.fields["time"]}
+                value={this.state.fields['time']}
               />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Period</ControlLabel>
               <div>
-                <ToggleButtonGroup type="radio" name="period" defaultValue={this.state.fields["period"]}>
-                  <ToggleButton onChange={this.handlePeriodChange} value={"AM"}>AM</ToggleButton>
-                  <ToggleButton onChange={this.handlePeriodChange} value={"PM"}>PM</ToggleButton>
+                <ToggleButtonGroup type='radio' name='period' defaultValue={this.state.fields['period']}>
+                  <ToggleButton onChange={this.handlePeriodChange} value={'AM'}>AM</ToggleButton>
+                  <ToggleButton onChange={this.handlePeriodChange} value={'PM'}>PM</ToggleButton>
                 </ToggleButtonGroup>
               </div>
             </FormGroup>
-            <Button bsStyle="success" type="submit">Submit</Button>
+            <Button bsStyle='success' type='submit'>Submit</Button>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="danger" onClick={this.handleRequestClose}>Close</Button>
+          <Button bsStyle='danger' onClick={this.handleRequestClose}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

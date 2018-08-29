@@ -2,23 +2,21 @@ import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
-const axios = require('axios');
-
 class Task extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteTask = this.deleteTask.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  deleteTask(event) {
-    axios.delete(process.env.REACT_APP_BACKEND_URL + '/todos/' + this.props.id)
-      .then(function(response){
-        console.log("Deleted the task!");
-      })
-      .catch(function(error){
-        console.log(error);
-      });
+  handleDelete() {
+    let taskToDelete = {
+      id: this.props.id,
+      title: this.props.activity_title,
+      time: this.props.time,
+      period: this.props.period
+    };
+    this.props.onDelete(taskToDelete);
   }
 
   render() {
@@ -40,7 +38,7 @@ class Task extends Component {
           <Col xs={1}>
             <Row style={{paddingTop: '10px'}}>
               <Col xs={6}>
-                <FontAwesome name='times' onClick={this.deleteTask} />
+                <FontAwesome name='times' onClick={this.handleDelete} />
               </Col>
               <Col xs={6}>
                 <FontAwesome name='check' />
