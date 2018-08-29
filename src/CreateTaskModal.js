@@ -35,15 +35,7 @@ class CreateTaskModal extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    var self = this;
-
-    axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', this.state.fields)
-      .then(function(response){
-        self.handleRequestClose();
-      })
-      .catch(function(error){
-        console.log(error);
-      });
+    this.props.onCreate(this.state.fields);
   }
 
   handleChange(event) {
