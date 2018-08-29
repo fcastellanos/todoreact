@@ -6,17 +6,19 @@ require('react-bootstrap/lib/ModalTitle');
 require('react-bootstrap/lib/ModalBody');
 require('react-bootstrap/lib/ModalFooter');
 
+var emptyTask = {
+  activity_title: '',
+  activity_description: '',
+  time: '',
+  period: 'AM'
+};
+
 class CreateTaskModal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      fields: {
-        activity_title: '',
-        activity_description: '',
-        time: '',
-        period: 'AM'
-      },
+      fields: emptyTask,
       errors: {}
     };
 
@@ -34,6 +36,14 @@ class CreateTaskModal extends Component {
     event.preventDefault();
 
     this.props.onCreate(this.state.fields);
+
+    // TODO: Find a way to use the emptyTask variable.
+    this.setState({fields: {
+      activity_title: '',
+      activity_description: '',
+      time: '',
+      period: 'AM'
+    }});
   }
 
   handleChange(event) {
@@ -81,7 +91,7 @@ class CreateTaskModal extends Component {
               <ControlLabel>Time</ControlLabel>
               <FormControl
                 id='time'
-                type='text'
+                type='number'
                 placeholder='Enter Time'
                 onChange={this.handleChange}
                 value={this.state.fields['time']}
