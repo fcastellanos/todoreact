@@ -76,16 +76,19 @@ class App extends Component {
   }
 
   confirmDelete(taskData) {
-    // var self = this;
+    var self = this;
 
-    // axios.delete(process.env.REACT_APP_BACKEND_URL + '/todos/' + taskData['id'])
-    //   .then(function(response){
-    //     self.setState({deleteModalIsOpen: false});
-    //   })
-    //   .catch(function(error){
-    //     console.log(error);
-    //   });
-    console.log(this.state.tasks[0]);
+    axios.delete(process.env.REACT_APP_BACKEND_URL + '/todos/' + taskData['id'])
+      .then(function(response){
+        var index = self.state.tasks.findIndex(x => x.id === taskData.id);
+        self.state.tasks.splice(index, 1);
+
+        self.setState({deleteModalIsOpen: false});
+        self.setState({tasks: self.state.tasks});
+      })
+      .catch(function(error){
+        console.log(error);
+      });
   }
 
   render() {
