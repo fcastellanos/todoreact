@@ -10,11 +10,16 @@ class ConfirmationModal extends Component {
   constructor(props) {
     super(props);
 
-    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleRequestClose  = this.handleRequestClose.bind(this);
+    this.handleConfirmAction = this.handleConfirmAction.bind(this);
   }
 
   handleRequestClose() {
     this.props.onHide();
+  }
+
+  handleConfirmAction() {
+    this.props.onConfirm(this.props.taskToDelete);
   }
 
   render() {
@@ -28,7 +33,7 @@ class ConfirmationModal extends Component {
         </ Modal.Body>
         <Modal.Footer>
           <Button bsStyle='success' onClick={this.handleRequestClose}>Cancel</Button>
-          <Button bsStyle='danger'>Delete</Button>
+          <Button bsStyle='danger' onClick={this.handleConfirmAction}>Delete</Button>
         </Modal.Footer>
       </Modal>
     );

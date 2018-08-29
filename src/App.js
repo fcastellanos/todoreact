@@ -35,6 +35,7 @@ class App extends Component {
     this.closeModal       = this.closeModal.bind(this);
     this.openDeleteModal  = this.openDeleteModal.bind(this);
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
+    this.confirmDelete    = this.confirmDelete.bind(this);
   }
 
   componentDidMount() {
@@ -65,13 +66,26 @@ class App extends Component {
     this.setState({modalIsOpen: false});
   }
 
-  openDeleteModal(props) {
-    this.setState({taskToDelete: props});
+  openDeleteModal(taskData) {
+    this.setState({taskToDelete: taskData});
     this.setState({deleteModalIsOpen: true});
   }
 
   closeDeleteModal() {
     this.setState({deleteModalIsOpen: false});
+  }
+
+  confirmDelete(taskData) {
+    // var self = this;
+
+    // axios.delete(process.env.REACT_APP_BACKEND_URL + '/todos/' + taskData['id'])
+    //   .then(function(response){
+    //     self.setState({deleteModalIsOpen: false});
+    //   })
+    //   .catch(function(error){
+    //     console.log(error);
+    //   });
+    console.log(this.state.tasks[0]);
   }
 
   render() {
@@ -85,7 +99,12 @@ class App extends Component {
         <br />
         <AddButton onClick={this.openModal} />
         <CreateTaskModal show={this.state.modalIsOpen} onHide={this.closeModal} />
-        <ConfirmationModal show={this.state.deleteModalIsOpen} onHide={this.closeDeleteModal} taskToDelete={this.state.taskToDelete} />
+        <ConfirmationModal
+          show={this.state.deleteModalIsOpen}
+          onHide={this.closeDeleteModal}
+          taskToDelete={this.state.taskToDelete}
+          onConfirm={this.confirmDelete}
+        />
       </div>
     );
   }
