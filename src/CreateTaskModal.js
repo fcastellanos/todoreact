@@ -6,8 +6,6 @@ require('react-bootstrap/lib/ModalTitle');
 require('react-bootstrap/lib/ModalBody');
 require('react-bootstrap/lib/ModalFooter');
 
-const axios = require('axios');
-
 class CreateTaskModal extends Component {
   constructor(props) {
     super(props);

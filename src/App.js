@@ -77,10 +77,13 @@ class App extends Component {
   }
 
   createTask(taskData) {
+    var self = this;
+
     axios.post(process.env.REACT_APP_BACKEND_URL + '/todos', taskData)
       .then(function(response){
-        console.log("Close after task create");
-        this.setState({modalIsOpen: false});
+        self.state.tasks.push(taskData);
+        self.setState({modalIsOpen: false});
+        self.setState({tasks: self.state.tasks});
       })
       .catch(function(error){
         console.log(error);
