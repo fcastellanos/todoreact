@@ -7,7 +7,11 @@ import Avatar from './Avatar.js';
 import AddButton from './AddButton.js';
 import CreateTaskModal from './CreateTaskModal.js';
 import ConfirmationModal from './ConfirmationModal.js';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCalendarTimes, faCalendarCheck, faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
+
+library.add(faCalendarTimes, faCalendarCheck, faCalendarPlus)
 
 require('dotenv').config();
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Task extends Component {
   constructor(props) {
@@ -38,10 +38,10 @@ class Task extends Component {
           <Col xs={1}>
             <Row style={{paddingTop: '10px'}}>
               <Col xs={6}>
-                <FontAwesome name='times' onClick={this.handleDelete} />
+                <FontAwesomeIcon icon="calendar-times" onClick={this.handleDelete} />
               </Col>
               <Col xs={6}>
-                <FontAwesome name='check' />
+                <FontAwesomeIcon icon="calendar-check" />
               </Col>
             </Row>
           </Col>
