@@ -1,0 +1,12 @@
+.taskTime {
+  text-align: center;
+  font-weight: bold;
+  padding-top: '10px';
+}
+
+.taskToDelete {
+  border-radius: 25px;
+  border: 2px solid #f44b42;
+  padding: 10px;
+  background: #ffa2a0;
+}

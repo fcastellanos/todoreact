@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid } from 'react-bootstrap';
 import Task from './Task.js';
 
 class TaskList extends Component {
@@ -16,7 +17,7 @@ class TaskList extends Component {
     var self = this;
 
     return (
-      <div>
+      <Grid>
         {this.props.tasks.map(function(task, index){
           return <Task
             key={index}
@@ -25,9 +26,10 @@ class TaskList extends Component {
             period={task.period}
             activity_title={task.activity_title}
             activity_description={task.activity_description}
-            onDelete={self.handleDelete}/>
+            onDelete={self.handleDelete}
+          />
         })}
-      </div>
+      </Grid>
     );
   }
 }

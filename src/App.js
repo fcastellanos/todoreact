@@ -74,10 +74,20 @@ class App extends Component {
   openDeleteModal(taskData) {
     this.setState({taskToDelete: taskData});
     this.setState({deleteModalIsOpen: true});
+
+    document.getElementById(taskData.id).classList.add('taskToDelete');
   }
 
   closeDeleteModal() {
+    document.getElementById(this.state.taskToDelete.id).classList.remove('taskToDelete');
+    
     this.setState({deleteModalIsOpen: false});
+    this.setState({taskToDelete: {
+      id: '',
+      title: '',
+      time: '',
+      period: ''
+    }});
   }
 
   createTask(taskData) {
