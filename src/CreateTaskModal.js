@@ -61,7 +61,7 @@ class CreateTaskModal extends Component {
 
   render() {
     return (
-        <Modal show={this.props.show} onHide={this.handleRequestClose}>
+      <Modal show={this.props.show} onHide={this.handleRequestClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add a new Task</Modal.Title>
         </Modal.Header>

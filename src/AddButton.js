@@ -9,16 +9,9 @@ class AddButton extends Component {
 
   render() {
     return (
-      <div>
-        <Row>
-          <Col xs={10}></Col>
-          <Col xs={2}>
-            <Button bsStyle='danger' bsSize='large' onClick={this.handleClick.bind(this)}>
-              <FontAwesomeIcon icon='calendar-plus' />
-            </Button>
-          </Col>
-        </Row>
-      </div>
+      <Button bsStyle='success' bsSize='large' onClick={this.handleClick.bind(this)}>
+        <FontAwesomeIcon icon='calendar-plus' />
+      </Button>
     );
   }
 }

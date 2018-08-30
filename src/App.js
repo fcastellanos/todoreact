@@ -7,8 +7,9 @@ import Avatar from './Avatar.js';
 import AddButton from './AddButton.js';
 import CreateTaskModal from './CreateTaskModal.js';
 import ConfirmationModal from './ConfirmationModal.js';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCalendarTimes, faCalendarCheck, faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCalendarTimes, faCalendarCheck, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+import { Grid, Row, Col } from 'react-bootstrap';
 import './App.css';
 
 library.add(faCalendarTimes, faCalendarCheck, faCalendarPlus)
@@ -80,7 +81,7 @@ class App extends Component {
 
   closeDeleteModal() {
     document.getElementById(this.state.taskToDelete.id).classList.remove('taskToDelete');
-    
+
     this.setState({deleteModalIsOpen: false});
     this.setState({taskToDelete: {
       id: '',
@@ -123,13 +124,26 @@ class App extends Component {
   render() {
     return (
       <div style={{padding: '30px 30px'}} className='App'>
-        <Avatar />
-        <br />
-        <Date />
-        <br />
-        <TaskList tasks={this.state.tasks} onDelete={this.openDeleteModal} />
-        <br />
-        <AddButton onClick={this.openModal} />
+        <Grid>
+          <Row>
+            <Col xs={11} xsOffset={11}>
+              <Avatar />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Date />
+            </Col>
+          </Row>
+          <Row>
+            <TaskList tasks={this.state.tasks} onDelete={this.openDeleteModal} />
+          </Row>
+          <Row>
+            <Col xs={11} xsOffset={11}>
+              <AddButton onClick={this.openModal} />
+            </Col>
+          </Row>
+        </Grid>
         <CreateTaskModal
           show={this.state.modalIsOpen}
           onHide={this.closeModal}
