@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class AddButton extends Component {
