@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Moment from 'moment';
 
 class Task extends Component {
   constructor(props) {
     super(props);
 
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDelete  = this.handleDelete.bind(this);
   }
 
   handleDelete() {
     let taskToDelete = {
       id: this.props.id,
       title: this.props.activity_title,
-      time: this.props.time,
-      period: this.props.period
+      date_time: this.props.date_time
     };
     this.props.onDelete(taskToDelete);
   }
@@ -24,9 +24,9 @@ class Task extends Component {
       <Row id={this.props.id}>
         <Col xs={1}>
           <div>
-            <p className="taskTime">{this.props.time}
+            <p className="taskTime">{Moment(this.props.date_time).format('hh')}
               <br/>
-              <span>{this.props.period}</span>
+              <span>{Moment(this.props.date_time).format('A')}</span>
             </p>
           </div>
         </Col>
