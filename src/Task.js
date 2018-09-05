@@ -8,6 +8,7 @@ class Task extends Component {
     super(props);
 
     this.handleDelete  = this.handleDelete.bind(this);
+    this.handleToggle  = this.handleToggle.bind(this);
   }
 
   handleDelete() {
@@ -17,6 +18,15 @@ class Task extends Component {
       date_time: this.props.date_time
     };
     this.props.onDelete(taskToDelete);
+  }
+
+  handleToggle() {
+    this.props.onToggle({
+      id: this.props.id,
+      title: this.props.activity_title,
+      date_time: this.props.date_time,
+      checked: true
+    });
   }
 
   formatTime() {
@@ -38,27 +48,25 @@ class Task extends Component {
   render() {
     return (
       <Row id={this.props.id}>
-        <Col xs={1} className={this.setTaskClassName()}>
-          <div>
-            <p className="taskTime">{this.formatTime()}
-              <br/>
-              <span>{this.formatPeriod()}</span>
-            </p>
-          </div>
+        <Col lg={1} xs={1} className={this.setTaskClassName()}>
+          <p className="taskTime">{this.formatTime()}
+            <br/>
+            <span>{this.formatPeriod()}</span>
+          </p>
         </Col>
-        <Col xs={10} className={this.setTaskClassName()}>
+        <Col lg={8} className={this.setTaskClassName()}>
           <h4>{this.props.activity_title}</h4>
           <p>{this.props.activity_description}</p>
         </Col>
-        <Col xs={1}>
+        <Col lg={1}>
           <Row style={{paddingTop: '10px'}}>
-            <Col xs={6}>
+            <Col lg={6}>
               <Button bsStyle='danger' onClick={this.handleDelete}>
                 <FontAwesomeIcon icon='calendar-times' />
               </Button>
             </Col>
-            <Col xs={6}>
-              <Button bsStyle='success'>
+            <Col lg={6}>
+              <Button bsStyle='success' onClick={this.handleToggle}>
                 <FontAwesomeIcon icon='calendar-check' />
               </Button>
             </Col>

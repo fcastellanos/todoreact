@@ -43,6 +43,7 @@ class App extends Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
     this.confirmDelete    = this.confirmDelete.bind(this);
     this.createTask       = this.createTask.bind(this);
+    this.toggleTask       = this.toggleTask.bind(this);
   }
 
   componentDidMount() {
@@ -123,12 +124,18 @@ class App extends Component {
       });
   }
 
+  toggleTask(taskData) {
+    var self = this;
+
+    console.log(taskData);
+  }
+
   render() {
     return (
       <div style={{padding: '30px 30px'}} className='App'>
         <Grid>
           <Row>
-            <Col xs={11} xsOffset={11}>
+            <Col lg={11} lgOffset={11}>
               <Avatar />
             </Col>
           </Row>
@@ -138,10 +145,14 @@ class App extends Component {
             </Col>
           </Row>
           <Row>
-            <TaskList tasks={this.state.tasks} onDelete={this.openDeleteModal} />
+            <TaskList
+              tasks={this.state.tasks}
+              onDelete={this.openDeleteModal}
+              onToggle={this.toggleTask}
+            />
           </Row>
           <Row>
-            <Col xs={11} xsOffset={11}>
+            <Col lgOffset={10}>
               <AddButton onClick={this.openModal} />
             </Col>
           </Row>

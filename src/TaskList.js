@@ -7,10 +7,15 @@ class TaskList extends Component {
     super(props);
 
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   handleDelete(props) {
     this.props.onDelete(props);
+  }
+
+  handleToggle(props) {
+    this.props.onToggle(props);
   }
 
   render() {
@@ -28,6 +33,7 @@ class TaskList extends Component {
             activity_description={task.activity_description}
             checked={task.checked}
             onDelete={self.handleDelete}
+            onToggle={self.handleToggle}
           />
         })}
       </Grid>
