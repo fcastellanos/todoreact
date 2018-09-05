@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import {Modal, Button, FormControl, FormGroup, ControlLabel, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
+import {Modal, Button, FormControl, FormGroup, ControlLabel} from 'react-bootstrap';
+import * as Datetime from 'react-datetime';
+
+// require('react-datetime');
 
 require('react-bootstrap/lib/ModalHeader');
 require('react-bootstrap/lib/ModalTitle');
@@ -9,8 +12,7 @@ require('react-bootstrap/lib/ModalFooter');
 var emptyTask = {
   activity_title: '',
   activity_description: '',
-  time: '',
-  period: 'AM'
+  date_time: ''
 };
 
 class CreateTaskModal extends Component {
@@ -25,7 +27,7 @@ class CreateTaskModal extends Component {
     this.onSubmit           = this.onSubmit.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleChange       = this.handleChange.bind(this);
-    this.handlePeriodChange = this.handlePeriodChange.bind(this);
+    this.handleDateChange   = this.handleDateChange.bind(this);
   }
 
   handleRequestClose() {
@@ -41,8 +43,7 @@ class CreateTaskModal extends Component {
     this.setState({fields: {
       activity_title: '',
       activity_description: '',
-      time: '',
-      period: 'AM'
+      date_time: ''
     }});
   }
 
@@ -52,10 +53,9 @@ class CreateTaskModal extends Component {
     this.setState({fields});
   }
 
-  // TODO: Find a way to make the period input work with the handleChange function
-  handlePeriodChange(event) {
+  handleDateChange(event) {
     let fields = this.state.fields;
-    fields['period'] = event.target.value;
+    fields['date_time'] = event.format();
     this.setState({fields});
   }
 
@@ -88,23 +88,8 @@ class CreateTaskModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Time</ControlLabel>
-              <FormControl
-                id='time'
-                type='number'
-                placeholder='Enter Time'
-                onChange={this.handleChange}
-                value={this.state.fields['time']}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>Period</ControlLabel>
-              <div>
-                <ToggleButtonGroup type='radio' name='period' defaultValue={this.state.fields['period']}>
-                  <ToggleButton onChange={this.handlePeriodChange} value={'AM'}>AM</ToggleButton>
-                  <ToggleButton onChange={this.handlePeriodChange} value={'PM'}>PM</ToggleButton>
-                </ToggleButtonGroup>
-              </div>
+              <ControlLabel>Date / Time</ControlLabel>
+              <Datetime onChange={this.handleDateChange} closeOnSelect={true} />
             </FormGroup>
             <Button bsStyle='success' type='submit'>Submit</Button>
           </form>

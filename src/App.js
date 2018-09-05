@@ -11,6 +11,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCalendarTimes, faCalendarCheck, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 import { Grid, Row, Col } from 'react-bootstrap';
 import './App.css';
+// TODO: Find a way to use the css coming from the package, see CreateTaskModal
+import './DatePicker.css';
 
 library.add(faCalendarTimes, faCalendarCheck, faCalendarPlus)
 
@@ -30,8 +32,7 @@ class App extends Component {
       taskToDelete: {
         id: '',
         title: '',
-        time: '',
-        period: ''
+        date_time: ''
       }
     };
 
@@ -86,8 +87,7 @@ class App extends Component {
     this.setState({taskToDelete: {
       id: '',
       title: '',
-      time: '',
-      period: ''
+      date_time: ''
     }});
   }
 
@@ -107,6 +107,8 @@ class App extends Component {
 
   confirmDelete(taskData) {
     var self = this;
+
+    document.getElementById(taskData.id).classList.remove('taskToDelete');
 
     axios.delete(process.env.REACT_APP_BACKEND_URL + '/todos/' + taskData['id'])
       .then(function(response){

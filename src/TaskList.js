@@ -23,7 +23,7 @@ class TaskList extends Component {
             key={index}
             id={task.id}
             time={task.time}
-            period={task.period}
+            date_time={task.date_time}
             activity_title={task.activity_title}
             activity_description={task.activity_description}
             onDelete={self.handleDelete}
