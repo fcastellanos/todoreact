@@ -10,3 +10,7 @@
   padding: 10px;
   background: #ffa2a0;
 }
+
+.taskCompleted {
+  text-decoration: line-through;
+}

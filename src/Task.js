@@ -19,18 +19,34 @@ class Task extends Component {
     this.props.onDelete(taskToDelete);
   }
 
+  formatTime() {
+    return Moment(this.props.date_time).format('hh');
+  }
+
+  formatPeriod() {
+    return Moment(this.props.date_time).format('A');
+  }
+
+  setTaskClassName() {
+    if (this.props.checked) {
+      return 'taskCompleted';
+    } else {
+      return '';
+    }
+  }
+
   render() {
     return (
       <Row id={this.props.id}>
-        <Col xs={1}>
+        <Col xs={1} className={this.setTaskClassName()}>
           <div>
-            <p className="taskTime">{Moment(this.props.date_time).format('hh')}
+            <p className="taskTime">{this.formatTime()}
               <br/>
-              <span>{Moment(this.props.date_time).format('A')}</span>
+              <span>{this.formatPeriod()}</span>
             </p>
           </div>
         </Col>
-        <Col xs={10}>
+        <Col xs={10} className={this.setTaskClassName()}>
           <h4>{this.props.activity_title}</h4>
           <p>{this.props.activity_description}</p>
         </Col>

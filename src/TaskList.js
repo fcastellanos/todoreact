@@ -26,6 +26,7 @@ class TaskList extends Component {
             date_time={task.date_time}
             activity_title={task.activity_title}
             activity_description={task.activity_description}
+            checked={task.checked}
             onDelete={self.handleDelete}
           />
         })}
